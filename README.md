@@ -1,164 +1,184 @@
-Mini Social Post Application (3W Internship Task)
+# 📸 Mini Social Post Application
 
-This is a full-stack MERN application built as a submission for the 3W Full Stack Internship. It's a "mini-social" platform allowing users to sign up, create posts with text and images, and interact with a live feed by liking and commenting.
+A full-stack social media application built with the MERN stack (MongoDB, Express, React, Node.js) that allows users to create accounts, share posts with images, and interact with content through likes.
 
-The project meets all core requirements and implements all bonus points, plus additional advanced features like real image uploads, post deletion, and an advanced, modern UI.
+---
 
-Live Demo
+## 🚀 Features
 
-Frontend (Vercel): [Add your Vercel deployment link here]
+- **User Authentication** — Secure signup and login with JWT-based auth
+- **Create Posts** — Share text and image posts via Cloudinary image hosting
+- **Like System** — Like/unlike posts with a modal showing who liked them
+- **Protected Routes** — Auth middleware guards private API endpoints
+- **Responsive UI** — Clean React frontend with skeleton loading states
+- **Dockerized** — Full Docker Compose setup for easy deployment
 
-Backend (Render): [Add your Render deployment link here]
+---
 
-Features
+## 🛠️ Tech Stack
 
-Core Requirements
+| Layer | Technology |
+|---|---|
+| Frontend | React, React Context API |
+| Backend | Node.js, Express.js |
+| Database | MongoDB (via Mongoose) |
+| Image Hosting | Cloudinary |
+| Auth | JWT (JSON Web Tokens) |
+| Containerization | Docker, Docker Compose |
 
-User Authentication: Secure signup and login with email/password using JWT.
+---
 
-Create Posts: Users can create posts with text or by uploading an image.
+## 📁 Project Structure
 
-Public Feed: A central feed shows all posts from all users.
+```
+├── backend/
+│   ├── config/
+│   │   ├── cloudinary.js       # Cloudinary SDK configuration
+│   │   └── db.js               # MongoDB connection
+│   ├── controllers/
+│   │   ├── authController.js   # Register & login logic
+│   │   └── postController.js   # CRUD & like logic for posts
+│   ├── middleware/
+│   │   ├── authMiddleware.js       # JWT verification
+│   │   ├── uploadMiddleware.js     # Multer file upload handler
+│   │   └── validationMiddleware.js # Request validation
+│   ├── models/
+│   │   ├── postModel.js        # Post schema
+│   │   └── userModel.js        # User schema
+│   ├── routes/
+│   │   ├── authRoutes.js       # /api/auth routes
+│   │   └── postRoutes.js       # /api/posts routes
+│   ├── server.js               # Express app entry point
+│   └── Dockerfile
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       │   ├── CreatePost.js   # Post creation form
+│       │   ├── LikeModal.js    # Modal showing users who liked a post
+│       │   ├── Navbar.js       # Top navigation bar
+│       │   ├── Post.js         # Individual post card
+│       │   └── PostSkeleton.js # Loading skeleton UI
+│       ├── context/
+│       │   └── AuthContext.js  # Global auth state
+│       ├── pages/
+│       │   ├── HomePage.js     # Feed of all posts
+│       │   ├── LoginPage.js    # Login form
+│       │   └── SignupPage.js   # Signup form
+│       ├── App.js
+│       └── Dockerfile
+│
+└── docker-compose.yml
+```
 
-Likes: Users can like and unlike posts.
+---
 
-Comments: Users can add comments to any post.
+## ⚙️ Getting Started
 
-MERN Stack: React frontend, Node/Express backend, and MongoDB database.
+### Prerequisites
 
-Bonus & Advanced Features
+- [Node.js](https://nodejs.org/) v18+
+- [MongoDB](https://www.mongodb.com/) (local or Atlas)
+- [Docker & Docker Compose](https://docs.docker.com/compose/) (optional)
+- A [Cloudinary](https://cloudinary.com/) account
 
-[BONUS] Efficient Pagination: The feed uses efficient "Load More" pagination, loading 5 posts at a time to handle large-scale data.
+### Environment Variables
 
-[BONUS] Clean & Modern UI:
+Create a `.env` file in the `backend/` directory:
 
-Skeleton Loaders: The feed shows a modern, shimmering skeleton UI (like Facebook/LinkedIn) while posts are loading.
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
 
-Collapsible Comments: The comment section is collapsible to maintain a clean feed.
+---
 
-Loading States: All buttons (Login, Post, Comment) show spinners when active to prevent double-clicks.
+## 🐳 Running with Docker
 
-Modals: Uses modals for a better user experience, including a list of "Who Liked This?"
+```bash
+# From the project root
+docker-compose up --build
+```
 
-[BONUS] Responsive & Optimized Layout: The app is fully responsive and looks great on mobile, tablet, and desktop, using MUI's grid system.
+The app will be available at:
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:5000
 
-[BONUS] Well-structured Code & Best Practices:
+---
 
-Server-Side Validation: Uses express-validator to secure backend endpoints.
+## 💻 Running Locally (without Docker)
 
-File Structure: Separate, well-organized frontend and backend folders.
+### Backend
 
-Environment Variables: Uses .env files on both frontend and backend to protect sensitive keys.
-
-[ADVANCED] Real Image Uploads: Instead of just image URLs, users can upload .jpg/.png files directly. Handled by multer and Cloudinary for cloud storage.
-
-[ADVANCED] Full CRUD Lifecycle: Users can delete their own posts, which also removes the associated image from the cloud.
-
-[ADVANCED] Data Population: The "Likes" count is clickable, opening a modal to show the list of all users who liked the post.
-
-(Add a screenshot of your deployed application here. This is very important!)
-
-Tech Stack
-
-Category
-
-Technology
-
-Frontend
-
-React, React Router, Material-UI (MUI), Axios, date-fns
-
-Backend
-
-Node.js, Express.js
-
-Database
-
-MongoDB (Atlas)
-
-Authentication
-
-JWT (JSON Web Tokens), bcrypt.js
-
-File Handling
-
-Cloudinary, Multer, Datauri
-
-Validation
-
-express-validator
-
-Deployment
-
-Vercel (Frontend), Render (Backend)
-
-How to Run Locally
-
-To get a local copy up and running, follow these steps.
-
-Prerequisites
-
-Node.js
-
-npm (or yarn)
-
-MongoDB Atlas account
-
-Cloudinary account
-
-1. Clone the repository
-
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
-cd mini-social-app
-
-
-2. Backend Setup
-
-# Navigate to the backend
+```bash
 cd backend
-
-# Install dependencies
 npm install
-
-# Create a .env file and add your keys
-touch .env
-
-
-Your backend/.env file should look like this:
-
-MONGO_URI=YOUR_MONGO_DB_CONNECTION_STRING
-JWT_SECRET=YOUR_SUPER_SECRET_KEY
-CLOUDINARY_CLOUD_NAME=YOUR_CLOUDINARY_CLOUD_NAME
-CLOUDINARY_API_KEY=YOUR_CLOUDINARY_API_KEY
-CLOUDINARY_API_SECRET=YOUR_CLOUDINARY_API_SECRET
-
-
-# Run the backend server
-npm run dev
-
-
-The backend will be running on http://localhost:5000.
-
-3. Frontend Setup
-
-# Open a new terminal and go to the root
-cd ..
-cd frontend
-
-# Install dependencies
-npm install
-
-# Create a .env file
-touch .env
-
-
-Your frontend/.env file should look like this:
-
-REACT_APP_API_URL=http://localhost:5000/api
-
-
-# Run the frontend app
 npm start
+```
 
+### Frontend
 
-The frontend will open on http://localhost:3000 and will be connected to your local backend.
+```bash
+cd frontend
+npm install
+npm start
+```
+
+---
+
+## 📡 API Endpoints
+
+### Auth
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/auth/register` | Register a new user |
+| `POST` | `/api/auth/login` | Login and receive JWT |
+
+### Posts
+
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| `GET` | `/api/posts` | Get all posts | No |
+| `POST` | `/api/posts` | Create a new post | ✅ Yes |
+| `DELETE` | `/api/posts/:id` | Delete a post | ✅ Yes |
+| `PUT` | `/api/posts/:id/like` | Like / unlike a post | ✅ Yes |
+
+---
+
+## 🔐 Authentication Flow
+
+1. User registers or logs in via `/api/auth`
+2. Server returns a signed JWT
+3. JWT is stored in React context (`AuthContext`)
+4. Protected requests include the token in the `Authorization: Bearer <token>` header
+5. `authMiddleware.js` verifies the token on each protected route
+
+---
+
+## 🖼️ Image Uploads
+
+Images are handled by **Multer** (`uploadMiddleware.js`) and uploaded directly to **Cloudinary**. The returned URL is stored in the post document in MongoDB.
+
+---
+
+## 🧩 Key Components
+
+| Component | Purpose |
+|---|---|
+| `AuthContext` | Stores logged-in user state globally across the app |
+| `Post` | Renders a single post with like button and author info |
+| `PostSkeleton` | Placeholder UI shown while posts are loading |
+| `LikeModal` | Displays the list of users who liked a post |
+| `CreatePost` | Form for composing and submitting a new post |
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
